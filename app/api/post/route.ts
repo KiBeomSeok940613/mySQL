@@ -19,13 +19,14 @@ export const GET = async (
         const perPage = 15;
         const offset = (page - 1 ) * perPage;
         try{
-            const [result] = await db.query<RowDataPacket[]>('SELECT * FROM sakila.payment order by payment_date limit ? offset ? ', [perPage, offset]);
+            const [result] = await db.query<RowDataPacket[]>('SELECT * FROM  new_schema.board order by date DESC limit ? offset ? ', [perPage, offset]);
+            // DESC 최신순으로 정렬해줌 
             // ? 매개변수를 입력 값이 없어도 가능 뒤에 배열 값을 입력하면 차례대로 출력
             // 변수 값이 변하는 것을 넣어야함 []
             // 페이지 네이션 을 변수 정해 가지고 온 다음 뿌리는것.
             const [countResult] = await db.query<RowDataPacket[]>
             // open api 의 총 갯수를 출력 할때.
-            ('select count(*) as cnt from sakila.payment')
+            ('select count(*) as cnt from  new_schema.board')
             const totalCnt = countResult[0].cnt
             console.log(result)
             
