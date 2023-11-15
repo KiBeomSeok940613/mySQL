@@ -75,8 +75,11 @@ export default function Detail(){
             post.length > 0 ? (
 
               <>
-                <p>제목 : {post && post[0]?.title}</p>
-                <p>내용 : {post && post[0]?.content}</p>
+                <div className="w-full flex items-start flex-col ">
+                <p className="m-20 border bg-cyan-300 rounded-md text-center">제목 : {post && post[0]?.title}</p> 
+                
+                <p  className="w-full flex justify-center">내용 : {post && post[0]?.content}</p>
+                </div>
                 {
                   session ? <Comment id={post && post[0]?.id} /> : <p className="block border p-4 text-center my 5 rounded-md"><Link href='/login'>로그인 이후 댓글을 작성 할 수 있습니다.</Link></p>
                 }

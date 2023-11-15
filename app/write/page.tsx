@@ -30,7 +30,7 @@ export default function Write() {
         title: '',
         content: '',
     })
-  }, [Session?.user.name, session?.user.email])
+  }, [session?.user.name, session?.user.email])
 
   const changeEvent = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -69,7 +69,8 @@ export default function Write() {
           className="shadow text-gray-700 text-sm mb-2 border"
           type="text"
           name="name"
-          defaultValue={session && session.user.name}
+          defaultValue={session?.user?.name}
+          readOnly
         ></input>
         <input
           onChange={changeEvent}
