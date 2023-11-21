@@ -14,7 +14,7 @@ const {id} = data > const id = 5 값이 저장된다.
 data.id 로 사용 가능...
 */
 
-'use Client';
+ 'use client';
 
 import React, { useEffect, useState } from "react";
 import { useCustomSession } from "../sessions";
@@ -47,6 +47,14 @@ export default function Comment(props: CommtentProps){
             username : session?.user?.name ?? '',
             content : '',
     })
+    useEffect(()=>{
+        setFormData({
+            parentid : id,
+            userid :  session?.user?.email ?? '',
+            username : session?.user?.name?? '',
+            content: ''
+        })
+    }, [session?.user.name, session?.user.email, id])
 
     const [totalComment, setTotalComment] = useState<commentType[]>();
     const commentValue = (e: React.ChangeEvent<HTMLInputElement>) => {

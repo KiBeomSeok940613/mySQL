@@ -7,6 +7,7 @@ interface formType{
     email: string;
     password: string;
     name: string;
+    phone : string;
 }
 
 export const POST = async (
@@ -14,11 +15,11 @@ export const POST = async (
 ) : Promise<NextResponse> => {
     if(req.method === 'POST'){
 
-        const {email, password, name}: formType = JSON.parse
+        const {email, password, name, phone}: formType = JSON.parse
         
         (await req.text());
 
-        if(!email || !password ||!name){
+        if(!email || !password ||!name ||!phone){
             NextResponse.json({message: '해당 이메일이 존재 합니다.'});
         }
         
@@ -30,7 +31,7 @@ export const POST = async (
             return NextResponse.json({message: '해당 이메일이 존재 합니다.'});
             
         }else{
-            await db.query('insert into new_schema.login_schema (email, password, name) values(?,?,?)',[email, hash, name]);
+            await db.query('insert into new_schema.login_schema (email, password, name, phone) values(?,?,?,?)',[email, hash, name, phone]);
 
             const data = {
                 email : email,

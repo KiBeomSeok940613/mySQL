@@ -4,6 +4,8 @@ import { link } from "fs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Search from "./search";
+
 
 interface PostList {
     id: number;
@@ -76,6 +78,7 @@ return(
                 padStart(2, '0');
                 const day = date.getDate(). toString(). padStart(2, '0')
                 const formatDate = `${year}-${month}-${day}`
+               
                 return(
                    <ul key={i} className="flex justify-between">
                     {/* e.id 를 안쓰는이유 2번을 삭제하면 1 3456으로 진행 되어버림 */}
@@ -111,6 +114,7 @@ return(
         }
         {page < lastPage && <button className="border px-1.5 py-1 rounded text-sm mb-20" onClick={()=>{setPage(page + 5)}}>다음</button>}
         </div>
+       
         
         </>
     )

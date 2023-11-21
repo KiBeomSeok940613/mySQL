@@ -10,13 +10,15 @@ interface formType{
     email: string;
     password: string;
     name: string;
+    phone: string;
 }
 
 export default   function Register(){
     const [formData, setFormData] = useState<formType>({
         email : '',
         password : '',
-        name : ''
+        name : '',
+        phone: '',
     })
     const [message, setMessage] = useState<string>('');
     const changeEvent  = (e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -69,6 +71,7 @@ export default   function Register(){
             <input onChange={changeEvent} type="text" placeholder="이메일" name="email" required ></input>
             <input onChange={changeEvent} type="password" placeholder="비밀번호" name="password" required ></input>
             <input onChange={changeEvent} type="text" placeholder="이름" name="name" required ></input>
+            <input onChange={changeEvent} type="text" placeholder="전화번호" name="phone" required ></input>
             <button type='submit'>확인</button>
 
         </form>
