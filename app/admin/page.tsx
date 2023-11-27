@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import ChartCom from './Chart';
+import ChartCom from '../components/admin/chart/Chart';
+
 
 
 interface userInfo{

@@ -7,7 +7,10 @@ interface formType{
     email: string;
     password: string;
     name: string;
+    level ? :number;
+    type ? : string;
     phone : string;
+    id ? : number;
 }
 
 export const POST = async (
@@ -15,9 +18,24 @@ export const POST = async (
 ) : Promise<NextResponse> => {
     if(req.method === 'POST'){
 
-        const {email, password, name, phone}: formType = JSON.parse
+        let {email, password, name, level, type, phone, id}: formType = JSON.parse
         
         (await req.text());
+            level = level === undefined ? 2 : level;
+        
+        if(type === 'edit'){
+            const [chKMember] = await db.query<RowDataPacket[]>(
+            'select password from New_schema.login_schema where email = ?',[email])
+        
+            if(password === chKMember[0].password){
+                await db.query<RowDataPacket[]>('update New_schema.login_schema set email = ?, name = ?, level =? where id = ?',[email, name, level, id])
+            }else{
+                const hash = await bcrypt.hash(password, 10);
+                await db.query<RowDataPacket[]>('update New_schema.login_schema set email = ?, password = ?, name = ?, level =? where id = ?',[email, hash, name, level, id])
+            }
+            return NextResponse.json({message: "성공", data:name})
+        }
+        
 
         if(!email || !password ||!name ||!phone){
             NextResponse.json({message: '해당 이메일이 존재 합니다.'});

@@ -114,8 +114,11 @@ export default function Comment(props: CommtentProps){
                     const formatDate = `${year}-${month}-${day}:${hours}:${minutes}:${seconds}`
                     return(
                         <>
-                        <p className='border p-4 border-green-300 max-w-7xl mx-auto flex flex-wrap justify-between px-[2%]' key={i}>{e.content}{formatDate}</p>
-                        
+                        <div key={i} className= 'max-w-7xl mx-auto flex justify-between border p-4'>
+                        <p>{e.userid}</p>
+                        <p>{e.content}</p>
+                        <p>{formatDate}</p>
+                        </div>
                         </>
                     )
                 })
