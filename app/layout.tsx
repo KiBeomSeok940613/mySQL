@@ -4,6 +4,7 @@ import './globals.css'
 
 import AuthSession from './session'
 import Nav from './components/nav'
+import Visit from './components/etc/visit'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -30,6 +31,7 @@ export default  async function RootLayout({
         <>
         {/* {session && session.user?.email ? "로그아웃" : "로그인"} */}
         <AuthSession>
+          <Visit />
         <Nav />
         {children}
         </AuthSession>
